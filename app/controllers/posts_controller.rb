@@ -29,12 +29,15 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		@post.update_attributes(params[:post])
 		if @post.save
-			redirect_to posts_path, :notice=>"SUccessfully updated!"
+			redirect_to posts_path, :notice=>"Successfully updated!"
 		else
 			render "new"
 		end
 	end
 	
 	def destroy
+		@post = Post.find(params[:id])
+		@post.destroy
+		redirect_to posts_path, :notice=>"Successfully deleted!"
 	end
 end
